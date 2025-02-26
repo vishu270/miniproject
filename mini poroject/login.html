@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-image: url('https://img.freepik.com/premium-photo/fingerprint-with-blue-background-word-fingerprint-it_582637-2677.jpg');
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-position: center;
+            background-size: cover;
+            padding: 20px;
+        }
+
+        .signup-container, .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            border-radius: 25px;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input, select {
+            width: 100%;
+            padding: 12px 15px;
+            background: white;
+            border: none;
+            border-radius: 25px;
+            color: #333;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #8b5cf6;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background: #7c3aed;
+        }
+
+        .login-container {
+            display: none;
+        }
+
+        #error-message {
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sign-up Form -->
+    <div class="signup-container">
+        <h2 style="margin-bottom: 20px;">Sign up</h2>
+        <form onsubmit="return validatePassword()">
+            <div class="form-group">
+                <input type="text" placeholder="User name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="Email id.." required>
+            </div>
+
+            <div class="phone" style="display: flex;">
+                <div class="form-group" style="width: 30%;">
+                    <select required>
+                        <option value="+91">+91 🇮🇳</option>
+                        <option value="+1">+1 🇺🇸</option>
+                        <option value="+44">+44 🇬🇧</option>
+                        <option value="+61">+61 🇦🇺</option>
+                        <option value="+81">+81 🇯🇵</option>
+                        <option value="+86">+86 🇨🇳</option>
+                        <option value="+33">+33 🇫🇷</option>
+                        <option value="+49">+49 🇩🇪</option>
+                        <option value="+55">+55 🇧🇷</option>
+                        <option value="+7">+7 🇷🇺</option>
+                        <option value="+971">+971 🇦🇪</option>
+                    </select>
+                </div>
+                <div class="form-group" style="width: 70%;">
+                    <input type="number" placeholder="Mobile No." required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            </div>
+
+            <div id="error-message">Passwords do not match!</div>
+
+            <div class="terms" style="margin-top: -10px;">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Agree to the <a href="signup-container2">terms and conditions</a></label>
+            </div>
+
+            <button type="submit" style="margin-top: 10px;">Submit</button>
+            <p class="term" style="margin-top: 10px; ">Already have an account? <a href="#" id="show-login">Login</a></p>
+        </form>
+    </div>
+
+    <!-- Login Form -->
+    <div class="login-container">
+        <h2 style="margin-bottom:20px;": 20px;>Login</h2>
+        <form>
+            <div class="form-group">
+                <input type="text" placeholder="User name / Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="Password" required>
+            </div>
+            <div class="terms" style="margin-bottom:20px;">
+                <label><a href="#">Forgot password?</a></label>
+            </div>
+            <button type="submit">Submit</button>
+            <p class="term"  style="margin-top:20px;">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+        </form>
+    </div>
+
+    <script>
+        // Show the login form when clicking "Login"
+        document.getElementById("show-login").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.querySelector(".signup-container").style.display = "none";
+            document.querySelector(".login-container").style.display = "block";
+        });
+
+        // Show the sign-up form when clicking "Sign up"
+        document.getElementById("show-signup").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.querySelector(".login-container").style.display = "none";
+            document.querySelector(".signup-container").style.display = "block";
+        });
+
+        function validatePassword() {
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm-password").value;
+            let errorMessage = document.getElementById("error-message");
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = "block";
+                return false; // Prevent form submission
+            } else {
+                errorMessage.style.display = "none";
+                alert("Passwords match! Proceeding to login...");
+                return true; // Allow form submission
+            }
+        }
+    </script>
+
+</body>
+</html>
